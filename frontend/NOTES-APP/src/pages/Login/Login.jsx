@@ -5,7 +5,7 @@ import PasswordInput from '../../components/Input/PasswordInput.jsx'
 import { validateEmail } from '../../utils/helper.js'
 import axiosInstance from '../../utils/axiosInstance.js'
 
-const Login = async () => {
+const Login = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -25,11 +25,12 @@ const Login = async () => {
             setError("Please enter the password")
             return
         }
-    }
 
+        setError("")
+  
     // Login API Call
     try {
-        const response = await axiosInstance.post("/login", {
+        const response =  await axiosInstance.post("/login", {
             email: email,
             password: password,
         })
@@ -37,7 +38,7 @@ const Login = async () => {
         // Handle successfull login response
         if(response.data && response.data.accessToken){
             localStorage.setItem("token", response.data.accessToken)
-            navigate('/dashboard')
+            navigate("/dashboard")
         }
     } catch (error) {
         // Handle login error
@@ -48,6 +49,7 @@ const Login = async () => {
             setError("An unexpected error occured . Please try again.")
         }
     }
+}
 
 
   return <>
