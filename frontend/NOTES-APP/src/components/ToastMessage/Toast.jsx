@@ -2,17 +2,17 @@ import React, { useEffect } from 'react'
 import {LuCheck} from 'react-icons/lu'
 import { MdDeleteOutline } from 'react-icons/md'
 
-const Toast = ({isShown, message, type, onClose}) => {
+const Toast = ({isShown, message, type, onclose}) => {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      onClose()
+      onclose()
     }, 3000);
 
     return() => {
       clearTimeout(timeoutId)
     }
-  }, [onClose])
+  }, [onclose])
 
   return (
     <div className={`absolute top-20 right-6 transition-all duration-400 ${
